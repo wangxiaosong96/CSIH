@@ -16,32 +16,9 @@ Accurately predicting the sign of gene–drug interactions (Activation vs. Inhib
 3.  **Contrastive Regularization**: Enhances representation quality at both node and graph levels, specifically designed for sparse datasets.
 
 
-## 📂 Project Structure
-
-CSIH_Project/
-
-├── src/
-
-│   ├── CSIH.py             # Core Model Architecture
-
-├── DataHandler.py          # Data Loading & Subgraph Extraction
-
-├── Params.py               # Hyperparameters
-
-├── run_CSIH.py             # Main Training Script
-
-├── interactions.csv        # Sample Dataset
-
-└── README.md               # Documentation
-
-
-
-
 ## 🛠️ Prerequisites
 
-### To run this project, you need Python 3.8+ and the following libraries:
-
-### pip install torch torch-geometric pandas numpy scikit-learn networkx
+### To run this project, you need Python 3.8+ and the following libraries: pip install torch torch-geometric pandas numpy scikit-learn networkx
 
 ### Note: Ensure your torch-geometric version is compatible with your torch and CUDA version.
 
