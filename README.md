@@ -67,17 +67,13 @@ The model is evaluated on several benchmark signed gene-drug interaction dataset
 * PyTorch Geometric
 * Pandas, NumPy, Scikit-learn, NetworkX
 
-Install dependencies:
-
-pip install torch torch-geometric pandas numpy scikit-learn networkx
+Install dependencies: pip install torch torch-geometric pandas numpy scikit-learn networkx
 
 
 ## 🚀 Usage
 
 ### 1. Basic Training
-Run with the default sample dataset:
-
-python run_CSIH.py
+Run with the default sample dataset: python run_CSIH.py
 
 ### 2. Custom Training
 To train on a specific benchmark (e.g., DrugBank), ensure your CSV is formatted correctly and run:
