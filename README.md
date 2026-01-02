@@ -7,19 +7,26 @@
 ![image](https://github.com/wangxiaosong96/CSIH/blob/main/src/Figure%202.png)
 
 
-## 📂 Project StructureThe repository is organized as follows:
+## 📖 Introduction
 
+Accurately predicting the sign of gene–drug interactions (Activation vs. Inhibition) is crucial for drug repurposing and mechanistic interpretation. **CSIH** addresses the limitations of existing methods (which often ignore edge signs or rely on simple balance theory) by introducing:
+
+1.  **Signed Hypergraph Learning**: Models complex high-order correlations between genes and drugs.
+2.  **Disentangled Intent Encoder**: Decomposes interactions into $K$ latent biological intents.
+3.  **Contrastive Regularization**: Enhances representation quality at both node and graph levels, specifically designed for sparse datasets.
+
+## 📂 Project Structure
+
+```text
 CSIH_Project/
+├── src/
+│   ├── CSIH.py             # Core Model Architecture
+├── DataHandler.py          # Data Loading & Subgraph Extraction
+├── Params.py               # Hyperparameters
+├── run_CSIH.py             # Main Training Script
+├── interactions.csv        # Sample Dataset
+└── README.md               # Documentation
 
-├── CSIH.py             # Core Model Architecture (Global GNN + Local Attention)
-
-├── DataHandler.py      # Data Loading, Subgraph Extraction, and ID Mapping
-
-├── Params.py           # Hyperparameters and Configuration
-
-├── run_CSIH.py         # Main Training and Evaluation Script
-
-├── interactions.csv    # Dataset (Gene-Drug pairs)
 
 ## 🛠️ Prerequisites
 
@@ -30,11 +37,27 @@ CSIH_Project/
 ### Note: Ensure your torch-geometric version is compatible with your torch and CUDA version.
 
 ## 📊 Dataset
-##The model is evaluated on several benchmark signed gene-drug interaction datasets. The statistics of these datasets are summarized below:
 
-Dataset,Gene,Drug,Positive Edge,Negative Edge,Association
-DGIdb,"3,019","11,187","9,074","19,008","28,082"
-DrugBank,"11,284",425,"40,926","39,998","80,924"
-LINCS L1000,"3,769",187,"9,876","10,734","20,610"
+The model is evaluated on several benchmark signed gene-drug interaction datasets. The statistics of these datasets are summarized below:
+
+| Dataset | Gene | Drug | Positive Edge | Negative Edge | Association |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **DGIdb** | 3,019 | 11,187 | 9,074 | 19,008 | 28,082 |
+| **DrugBank** | 11,284 | 425 | 40,926 | 39,998 | 80,924 |
+| **LINCS L1000** | 3,769 | 187 | 9,876 | 10,734 | 20,610 |
+
+
+## 🛠️ Prerequisites
+
+* Python 3.8+
+* PyTorch 1.12+
+* PyTorch Geometric
+* Pandas, NumPy, Scikit-learn, NetworkX
+
+Install dependencies:
+```bash
+pip install torch torch-geometric pandas numpy scikit-learn networkx
+
+
 
 
