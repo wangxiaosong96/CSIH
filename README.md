@@ -68,9 +68,8 @@ The model is evaluated on several benchmark signed gene-drug interaction dataset
 * Pandas, NumPy, Scikit-learn, NetworkX
 
 Install dependencies:
-```bash
-pip install torch torch-geometric pandas numpy scikit-learn networkx
 
+pip install torch torch-geometric pandas numpy scikit-learn networkx
 
 
 ## 🚀 Usage
