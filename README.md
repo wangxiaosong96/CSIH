@@ -20,7 +20,6 @@ Accurately predicting the sign of gene–drug interactions (Activation vs. Inhib
 
 ## 📂 Project Structure
 
-```text
 CSIH_Project/
 ├── src/
 │   ├── CSIH.py             # Core Model Architecture
