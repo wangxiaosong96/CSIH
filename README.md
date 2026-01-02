@@ -95,11 +95,8 @@ If you use this code or datasets, please cite our paper:
 
 
 ## 📧 Contact
-For any questions, please contact:
+For any questions, please contact: Xiaosong Wang: xiaosongwang@stu.ahau.edu.cn
 
-Xiaosong Wang: xiaosongwang@stu.ahau.edu.cn
-
-Lichuan Gu: glc@ahau.edu.cn
 
 
 
