@@ -16,13 +16,11 @@ Accurately predicting the sign of gene–drug interactions (Activation vs. Inhib
 3.  **Contrastive Regularization**: Enhances representation quality at both node and graph levels, specifically designed for sparse datasets.
 
 
-
-
 ## 📂 Project Structure
-```bash
+
 CSIH_Project/
 ├── src/
-│   ├── CSIH.py             # Core Model Architecture
+├── CSIH.py             # Core Model Architecture
 ├── DataHandler.py          # Data Loading & Subgraph Extraction
 ├── Params.py               # Hyperparameters
 ├── run_CSIH.py             # Main Training Script
