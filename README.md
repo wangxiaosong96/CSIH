@@ -20,11 +20,17 @@ Accurately predicting the sign of gene–drug interactions (Activation vs. Inhib
 
 CSIH_Project/
 ├── src/
+
 ├── CSIH.py             # Core Model Architecture
+
 ├── DataHandler.py          # Data Loading & Subgraph Extraction
+
 ├── Params.py               # Hyperparameters
+
 ├── run_CSIH.py             # Main Training Script
+
 ├── interactions.csv        # Sample Dataset
+
 └── README.md               # Documentation
 
 
@@ -67,4 +73,10 @@ pip install torch torch-geometric pandas numpy scikit-learn networkx
 
 
 
+## 🚀 Usage
+
+### 1. Basic Training
+Run with the default sample dataset:
+```bash
+python run_CSIH.py
 
