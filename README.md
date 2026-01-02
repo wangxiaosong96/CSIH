@@ -18,9 +18,11 @@ Accurately predicting the sign of gene–drug interactions (Activation vs. Inhib
 
 ## 🛠️ Prerequisites
 
-### To run this project, you need Python 3.8+ and the following libraries: pip install torch torch-geometric pandas numpy scikit-learn networkx
+### To run this project, you need Python 3.8+ and the following libraries: 
 
-### Note: Ensure your torch-geometric version is compatible with your torch and CUDA version.
+pip install torch torch-geometric pandas numpy scikit-learn networkx
+
+Note: Ensure your torch-geometric version is compatible with your torch and CUDA version.
 
 
 
