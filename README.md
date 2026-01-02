@@ -15,6 +15,9 @@ Accurately predicting the sign of gene–drug interactions (Activation vs. Inhib
 2.  **Disentangled Intent Encoder**: Decomposes interactions into $K$ latent biological intents.
 3.  **Contrastive Regularization**: Enhances representation quality at both node and graph levels, specifically designed for sparse datasets.
 
+
+
+
 ## 📂 Project Structure
 
 ```text
@@ -28,6 +31,8 @@ CSIH_Project/
 └── README.md               # Documentation
 
 
+
+
 ## 🛠️ Prerequisites
 
 ### To run this project, you need Python 3.8+ and the following libraries:
@@ -35,6 +40,9 @@ CSIH_Project/
 ### pip install torch torch-geometric pandas numpy scikit-learn networkx
 
 ### Note: Ensure your torch-geometric version is compatible with your torch and CUDA version.
+
+
+
 
 ## 📊 Dataset
 
@@ -45,6 +53,8 @@ The model is evaluated on several benchmark signed gene-drug interaction dataset
 | **DGIdb** | 3,019 | 11,187 | 9,074 | 19,008 | 28,082 |
 | **DrugBank** | 11,284 | 425 | 40,926 | 39,998 | 80,924 |
 | **LINCS L1000** | 3,769 | 187 | 9,876 | 10,734 | 20,610 |
+
+
 
 
 ## 🛠️ Prerequisites
