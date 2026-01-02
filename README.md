@@ -77,6 +77,35 @@ pip install torch torch-geometric pandas numpy scikit-learn networkx
 
 ### 1. Basic Training
 Run with the default sample dataset:
-```bash
+
 python run_CSIH.py
+
+### 2. Custom Training
+To train on a specific benchmark (e.g., DrugBank), ensure your CSV is formatted correctly and run:
+
+python run_CSIH.py --dataset_path ./data/DrugBank.csv --n_intents 16 --batch 128
+
+
+## 🤝 Citation
+
+If you use this code or datasets, please cite our paper:
+
+@article{wang2026CSIH,
+  title={CSIH: Contrastive signed-intent hypergraph learning for gene-drug interaction sign prediction},
+  author={Wang, Xiaosong and Chen, Guojun and Lv, GuoHao and Xue, Wei and Yue, Zhenyu and Wang, Qingyong and Gu, Lichuan},
+  journal={Manuscript},
+  year={2026},
+  institution={Anhui Agricultural University}
+}
+
+
+## 📧 Contact
+For any questions, please contact:
+
+Xiaosong Wang: xiaosongwang@stu.ahau.edu.cn
+
+Lichuan Gu: glc@ahau.edu.cn
+
+
+
 
