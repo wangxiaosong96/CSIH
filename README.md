@@ -3,10 +3,12 @@
 
 ### This repository contains the official PyTorch implementation of the CSIH model (based on the framework originally titled DiSign).CSIH is a robust graph neural network framework designed for Signed Bipartite Graphs. It is particularly effective for tasks like Gene-Drug interaction prediction, where it disentangles latent intents (e.g., biological pathways or mechanisms) behind interactions.
 
-## 📖 IntroductionTraditional methods often treat interactions as binary (exist/not exist) or rely on rigid sociological theories (like Balance Theory). CSIH overcomes these limitations by introducing:Global Disentangled Intent Encoder: Decomposes global graph embeddings into $K$ latent intents.Local Sign-Aware Subgraph Extractor: Captures fine-grained topological patterns using a novel Two-Anchor Distance Labeling mechanism.Contrastive Learning: Utilizes multi-granularity self-supervision to improve robustness, especially on sparse datasets.
+### 📖 IntroductionTraditional methods often treat interactions as binary (exist/not exist) or rely on rigid sociological theories (like Balance Theory). CSIH overcomes these limitations by introducing:Global Disentangled Intent Encoder: Decomposes global graph embeddings into $K$ latent intents.Local Sign-Aware Subgraph Extractor: Captures fine-grained topological patterns using a novel Two-Anchor Distance Labeling mechanism.Contrastive Learning: Utilizes multi-granularity self-supervision to improve robustness, especially on sparse datasets.
+
+![image](https://github.com/wangxiaosong96/CSIH/blob/main/src/Figure%202.png)
 
 
-## 📂 Project StructureThe repository is organized as follows:
+### 📂 Project StructureThe repository is organized as follows:
 
 CSIH_Project/
 
@@ -20,5 +22,13 @@ CSIH_Project/
 
 ├── interactions.csv    # Dataset (Gene-Drug pairs)
 
+### 🛠️ Prerequisites
 
-![image](https://github.com/wangxiaosong96/CSIH/blob/main/src/Figure%202.png)
+### To run this project, you need Python 3.8+ and the following libraries:
+
+Bash
+
+pip install torch torch-geometric pandas numpy scikit-learn networkx
+
+Note: Ensure your torch-geometric version is compatible with your torch and CUDA version.
+
