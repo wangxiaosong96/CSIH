@@ -7,7 +7,7 @@ This repository provides the PyTorch implementation of **CSIH**, a foundation-mo
 CSIH predicts whether an observed drug–gene interaction corresponds to an **activating/up-regulating** or **inhibitory/down-regulating** regulatory effect.
 
 <p align="center">
-  <img src="[assets/Figure2.png](https://github.com/wangxiaosong96/CSIH/blob/main/src/figure2.png)" width="900">
+  <img src="https://github.com/wangxiaosong96/CSIH/blob/main/src/figure2.png" width="900">
 </p>
 
 ## Overview
