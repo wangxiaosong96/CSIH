@@ -1,83 +1,144 @@
 # CSIH
-## CSIH: Contrastive signed-intent hypergraph learning for gene-drug interaction sign prediction
 
-### This repository contains the official PyTorch implementation of the CSIH model (based on the framework originally titled DiSign).CSIH is a robust graph neural network framework designed for Signed Bipartite Graphs. It is particularly effective for tasks like Gene-Drug interaction prediction, where it disentangles latent intents (e.g., biological pathways or mechanisms) behind interactions.
+## Sign-Aware Intent Hypergraph Learning for Directional Drug–Gene Effect Prediction
 
+This repository provides the PyTorch implementation of **CSIH**, a foundation-model-enhanced signed-intent hypergraph learning framework for drug–gene regulatory sign prediction.
 
-![image](https://github.com/wangxiaosong96/CSIH/blob/main/src/Figure%202.png)
+CSIH predicts whether an observed drug–gene interaction corresponds to an **activating/up-regulating** or **inhibitory/down-regulating** regulatory effect.
 
+<p align="center">
+  <img src="assets/Figure2.png" width="900">
+</p>
 
-## 📖 Introduction
+## Overview
 
-Accurately predicting the sign of gene–drug interactions (Activation vs. Inhibition) is crucial for drug repurposing and mechanistic interpretation. **CSIH** addresses the limitations of existing methods (which often ignore edge signs or rely on simple balance theory) by introducing:
+CSIH contains five major components:
 
-1.  **Signed Hypergraph Learning**: Models complex high-order correlations between genes and drugs.
-2.  **Disentangled Intent Encoder**: Decomposes interactions into $K$ latent biological intents.
-3.  **Contrastive Regularization**: Enhances representation quality at both node and graph levels, specifically designed for sparse datasets.
+1. **Foundation Model-Based Representation Initialization** — precomputed Uni-Mol molecular representations and ESM-2 protein representations are combined with trainable identity embeddings.
+2. **Sign-Aware Relation Encoding** — activation and inhibition interactions are modeled using separate message-passing channels.
+3. **Signed-Intent Hypergraph Learning** — multiple sign-specific latent intent channels use learnable hyperedge prototypes and Top-K assignments to capture high-order regulatory dependencies.
+4. **Late Adaptive Sign Fusion** — positive and negative high-order representations are integrated only after signed-intent hypergraph propagation.
+5. **Hierarchical Contrastive Learning** — node-level and graph-level contrastive objectives, together with intent decorrelation, regularize CSIH training.
 
+## Repository Structure
 
-## 🛠️ Prerequisites
+```text
+CSIH/
+├── README.md
+├── requirements.txt
+├── LICENSE
+├── CITATION.cff
+├── algorithm.py
+├── graph.py
+├── generate.py
+├── parameter.py
+├── util.py
+├── run.py
+├── run_large.py
+├── baseline.py
+├── ablation.py
+├── cold_start.py
+├── preprocess.py
+├── prepare_dgidb.py
+├── prepare_drugbank.py
+├── prepare_lincs.py
+├── extract_esm2.py
+├── extract_unimol.py
+├── save_results.py
+├── data/
+├── features/
+├── splits/
+├── results/
+└── assets/
+```
 
-### To run this project, you need Python 3.8+ and the following libraries: 
+## Datasets
 
-### pip install torch torch-geometric pandas numpy scikit-learn networkx
+| Dataset | Genes | Drugs | Positive | Negative | Total |
+|---|---:|---:|---:|---:|---:|
+| DGIdb | 3,019 | 11,187 | 9,074 | 19,008 | 28,082 |
+| DrugBank | 11,284 | 425 | 40,926 | 39,998 | 80,924 |
+| LINCS L1000 | 3,769 | 187 | 9,876 | 10,734 | 20,610 |
 
-Note: Ensure your torch-geometric version is compatible with your torch and CUDA version.
+The standardized interaction format is:
 
+```csv
+drug,gene,sign
+Afatinib,EGFR,-1
+Doxorubicin,TP53,1
+```
 
+`+1` denotes activation/up-regulation and `-1` denotes inhibition/down-regulation.
 
+## Foundation-Model Features
 
-## 📊 Dataset
+CSIH uses precomputed **Uni-Mol** drug representations and **ESM-2 (`esm2_t33_650M_UR50D`)** protein representations.
 
-The model is evaluated on several benchmark signed gene-drug interaction datasets. The statistics of these datasets are summarized below:
+Expected files:
 
-| Dataset | Gene | Drug | Positive Edge | Negative Edge | Association |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **DGIdb** | 3,019 | 11,187 | 9,074 | 19,008 | 28,082 |
-| **DrugBank** | 11,284 | 425 | 40,926 | 39,998 | 80,924 |
-| **LINCS L1000** | 3,769 | 187 | 9,876 | 10,734 | 20,610 |
+```text
+features/drug_features.npy
+features/gene_features.npy
+```
 
+The foundation models are frozen and their representations are precomputed before CSIH training.
 
+## Installation
 
+Python 3.8+ is recommended.
 
-## 🛠️ Prerequisites
+```bash
+pip install -r requirements.txt
+```
 
-* Python 3.8+
-* PyTorch 1.12+
-* PyTorch Geometric
-* Pandas, NumPy, Scikit-learn, NetworkX
+## Training
 
-Install dependencies: pip install torch torch-geometric pandas numpy scikit-learn networkx
+Example:
 
+```bash
+python run.py \
+  --data data/DGIdb.csv \
+  --drug_features features/drug_features.npy \
+  --gene_features features/gene_features.npy
+```
 
-## 🚀 Usage
+The main evaluation protocol uses stratified five-fold cross-validation repeated with five independent random seeds. Only training interactions are used to construct the message-passing graph in each fold.
 
-### 1. Basic Training
-Run with the default sample dataset: python run_CSIH.py
+## Cold-Start Evaluation
 
-### 2. Custom Training
-To train on a specific benchmark (e.g., DrugBank), ensure your CSV is formatted correctly and run:
+The repository supports:
 
-python run_CSIH.py --dataset_path ./data/DrugBank.csv --n_intents 16 --batch 128
+- drug cold-start;
+- gene cold-start;
+- double cold-start.
 
+Cold-start entities are selected before graph construction. Their incident interactions are excluded from training and validation graphs, and their trainable identity embeddings are set to zero during inference.
 
-## 🤝 Citation
+## Evaluation Metrics
 
-If you use this code or datasets, please cite our paper:
+The main metrics are **AUC**, **AUPR**, and **Binary-F1**.
 
-@article{wang2026CSIH,
-  title={CSIH: Contrastive signed-intent hypergraph learning for gene-drug interaction sign prediction},
-  author={Wang, Xiaosong and Chen, Guojun and Lv, GuoHao and Xue, Wei and Yue, Zhenyu and Wang, Qingyong and Gu, Lichuan},
-  journal={Manuscript},
-  year={2026},
-  institution={Anhui Agricultural University}
+## Data Availability
+
+Processed data and experimental files may be distributed only where licensing permits. Raw DrugBank data are not redistributed in this repository. Users should obtain DrugBank data through the appropriate official access route and apply the provided preprocessing script locally.
+
+## Citation
+
+If you use this repository, please cite:
+
+```bibtex
+@article{wang2026csih,
+  title   = {Sign-Aware Intent Hypergraph Learning for Directional Drug--Gene Effect Prediction},
+  author  = {Wang, Xiaosong and Chen, Guojun and Lv, Guohao and Xue, Wei and Yue, Zhenyu and Wang, Qingyong and Gu, Lichuan},
+  year    = {2026},
+  note    = {Manuscript}
 }
+```
 
+Citation information will be updated after publication.
 
-## 📧 Contact
-For any questions, please contact: Xiaosong Wang: xiaosongwang@stu.ahau.edu.cn
+## Contact
 
-
-
-
-
+**Xiaosong Wang**  
+Anhui Agricultural University  
+Email: xiaosongwang@stu.ahau.edu.cn
