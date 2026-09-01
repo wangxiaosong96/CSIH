@@ -1,13 +1,13 @@
 # CSIH
 
-## Sign-Aware Intent Hypergraph Learning for Directional Drug–Gene Effect Prediction
+## CSIH: Dual-Branch Contrastive Signed-Intent Hypergraph Learning with Foundation Model Priors for Drug–Gene Regulatory Sign Prediction
 
 This repository provides the PyTorch implementation of **CSIH**, a foundation-model-enhanced signed-intent hypergraph learning framework for drug–gene regulatory sign prediction.
 
 CSIH predicts whether an observed drug–gene interaction corresponds to an **activating/up-regulating** or **inhibitory/down-regulating** regulatory effect.
 
 <p align="center">
-  <img src="https://github.com/wangxiaosong96/CSIH/blob/main/src/Graphical Abstract.png" width="900">
+  <img src="https://github.com/wangxiaosong96/CSIH/blob/main/src/Graphical_Abstract.png" width="900">
   <img src="https://github.com/wangxiaosong96/CSIH/blob/main/src/figure2.png" width="900">
 </p>
 
